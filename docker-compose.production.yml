@@ -1,0 +1,62 @@
+# Docker-compose configuration for production
+
+version: '2'
+
+services:
+    django:
+        build:
+            context: .
+            dockerfile: Dockerfile-django.production
+        container_name: eline_django
+        restart: unless-stopped
+        volumes:
+            - "./eline/app/build:/app/app/build"
+            - "./eline/app/webpack-stats.json:/app/app/webpack-stats.json"
+            - "/var/lib/docker-nginx/files/eline/media:/files/media"
+            - "/var/lib/docker-nginx/files/eline/assets:/files/assets"
+            - "/var/log/eline:/var/log/eline"
+        # For some reason the command also has to be specified here, otherwise the entrypoint+command combination won't
+        #  work.
+        entrypoint: /usr/bin/wait-for-it.sh postgres:5432 -t 60 --
+        command: gunicorn eline.wsgi:application --workers 2 --bind :80
+        networks:
+            - default
+            - eline_nginx
+            - eline_postgres
+        depends_on:
+            - redis
+        external_links:
+            - postgres-10:postgres
+
+    node:
+        build:
+            context: .
+            dockerfile: Dockerfile-node.production
+        # Make this service no-op as we don't actually want it running but do want to use docker-compose file to define
+        #  volumes etc.
+        restart: "no"
+        command: "true"
+        volumes:
+            - "./eline/app:/app/app"
+            - "./eline/static:/app/static:ro"
+        # Node container won't be part of any networks
+        networks: []
+
+    redis:
+        image: redis:4.0.9-alpine
+        restart: unless-stopped
+        volumes:
+            - "/var/lib/docker-eline/redis:/data"
+        networks:
+            - default
+
+# NB: These networks must be created by fabfile and contain the global nginx/postgres containers.
+# Keep it in sync with fabfile!
+networks:
+    default:
+        external:
+            name: eline_default
+    eline_nginx:
+        external: true
+    eline_postgres:
+        external: true

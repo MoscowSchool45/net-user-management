@@ -1,0 +1,24 @@
+# Ignore everything in .idea
+.idea
+
+*.mo
+*.pyo
+*.pyc
+.sass-cache/
+npm-debug.log
+node_modules/
+venv/
+.cache/
+
+.data*/
+
+eline/settings/local.py
+eline/settings/local_test.py
+eline/db.sqlite3
+eline/app/webpack-stats.json
+eline/app/build/
+eline/assets/
+
+eline/.cache
+eline/.coverage
+eline/cover/

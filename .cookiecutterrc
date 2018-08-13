@@ -1,0 +1,36 @@
+{
+    "cookiecutter": {
+        "*": "\n\t Some information before the generation!\n\n\t    project_title: User-visible title of the project.\n\t        repo_name: Preferably lowercase codename, used for the directory structure and Python modules.\n\t      include_cms: Include Django-CMS configuration.  [yes/no]\n\t   include_celery: Include Celery with Redis as the broker.  [yes/no]\n\t    live_hostname: Production hostname of the site (e.g. example.com).\n\t        test_host: Hostname of your test server.\n\t        live_host: Hostname of your live server.\n\t      admin_email: Administrative email (for Django, Let\u2019s Encrypt, etc).\n\t              vcs: Which VCS will the generated project be using?  [git/hg/none]\n\t   python_version: Which python version will the generated project be using?  [3.4/3.5/3.6]\n\tdjango_admin_path: URL path for Django Admin.\n\t  gitlab_repo_url: Optional Gitlab repo url (https://gitlab.com/org/repo, used for CI badges).\n\t\n\t Press ENTER to continue.\n",
+        "_0": "\n\t Some information before the generation!\n",
+        "_1": "\n\t    project_title: User-visible title of the project.",
+        "_10": "\n\t   python_version: Which python version will the generated project be using?  [3.4/3.5/3.6]",
+        "_11": "\n\tdjango_admin_path: URL path for Django Admin.",
+        "_12": "\n\t  gitlab_repo_url: Optional Gitlab repo url (https://gitlab.com/org/repo, used for CI badges).",
+        "_13": "\n\t",
+        "_14": "\n\t Press ENTER to continue.\n",
+        "_2": "\n\t        repo_name: Preferably lowercase codename, used for the directory structure and Python modules.",
+        "_3": "\n\t      include_cms: Include Django-CMS configuration.  [yes/no]",
+        "_4": "\n\t   include_celery: Include Celery with Redis as the broker.  [yes/no]",
+        "_5": "\n\t    live_hostname: Production hostname of the site (e.g. example.com).",
+        "_6": "\n\t        test_host: Hostname of your test server.",
+        "_7": "\n\t        live_host: Hostname of your live server.",
+        "_8": "\n\t      admin_email: Administrative email (for Django, Let\u2019s Encrypt, etc).",
+        "_9": "\n\t              vcs: Which VCS will the generated project be using?  [git/hg/none]",
+        "_extensions": [
+            "cookiecutter_repo_extensions:Extension",
+            "clean_hostname:CleanHostnameModule"
+        ],
+        "admin_email": "admin@ms45.edu.ru",
+        "django_admin_path": "admin",
+        "gitlab_repo_url": "",
+        "include_celery": "no",
+        "include_cms": "no",
+        "live_host": "production.accounts.ms45.edu.ru",
+        "live_hostname": "accounts.ms45.edu.ru",
+        "project_title": "User Management System",
+        "python_version": "3.6",
+        "repo_name": "eline",
+        "test_host": "test.accounts.ms45.edu.ru",
+        "vcs": "git"
+    }
+}

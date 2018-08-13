@@ -1,0 +1,49 @@
+# Docker-compose configuration for development
+
+version: '2'
+
+services:
+    django:
+        build:
+            context: .
+            dockerfile: Dockerfile-django
+        ports:
+            - "8000:80"
+        volumes:
+            - "./eline:/app"
+            - ".data/media:/files/media"
+        environment:
+            - PYTHONUNBUFFERED=0
+        # Add -Wall option to see the (deprecation) warnings
+        # command: python -Wall manage.py runserver 0.0.0.0:80
+        command: python manage.py runserver 0.0.0.0:80
+        entrypoint: /usr/bin/wait-for-it.sh postgres:5432 -t 60 --
+        depends_on:
+            - node
+            - postgres
+            - redis
+
+    node:
+        build:
+            context: .
+            dockerfile: Dockerfile-node
+        volumes:
+            - ".data/node_modules:/app/node_modules"
+            - "./eline:/app"
+
+    postgres:
+        image: postgres:10
+        # Comment in the following lines to connect to your Dockerized instance of Postgres from your host machine.
+        # Change the host port (before colon) if you have a local instance of Postgres running on that port.
+        # ports:
+        #     - "5432:5432"
+        volumes:
+            - ".data/postgres:/var/lib/postgresql/data"
+        environment:
+            POSTGRES_USER: eline
+            POSTGRES_PASSWORD: eline
+
+    redis:
+        image: redis:4.0.9-alpine
+        volumes:
+            - ".data/redis:/data"
