@@ -3,10 +3,11 @@ import ReactDOM from 'react-dom';
 import Raven from 'raven-js';
 import {Provider} from 'react-redux';
 
-import HelloWorld from 'components/HelloWorld';
+import AppRoot from 'components/AppRoot';
 
 import rootReducer from './reducers';
-import configureStore from './store';
+import {store, sagaMiddleware, promiseListener} from './store';
+import rootSaga from "./sagas";
 
 // Install Raven in production envs
 if (process.env.NODE_ENV === 'production') {
@@ -25,18 +26,15 @@ if (process.env.NODE_ENV === 'production') {
     }
 }
 
-// Create Redux store
-const store = configureStore(rootReducer);
-
 function init() {
-    const elem = document.getElementById("hello-container");
+    const elem = document.getElementById("app-container");
     if (!elem) {
         return;
     }
 
     ReactDOM.render(
         <Provider store={store}>
-            <HelloWorld />
+            <AppRoot />
         </Provider>,
         elem,
     );
