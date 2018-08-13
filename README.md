@@ -1,5 +1,7 @@
 # README for User Management System
 
+A tool to manage users stored in LDAP with sync to other backends. Based on https://github.com/thorgate/django-project-template and previous versions of User Management System used in Moscow School 45.
+
 TODO: verify that the following info is correct:
 
  - Python:  3.6
