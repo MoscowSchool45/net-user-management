@@ -6,7 +6,7 @@ TODO: verify that the following info is correct:
 
  - Python:  3.6
  - DB:      PostgreSQL 10
- - Node:    8.x LTS
+ - Node:    9.8.0
  - NPM:     5.x
  - React:   16.x
 
