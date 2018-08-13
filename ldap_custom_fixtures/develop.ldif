@@ -1,0 +1,32 @@
+dn: ou=adm,dc=school,dc=edu
+objectClass: organizationalUnit
+objectClass: top
+ou: adm
+
+dn: ou=edu,dc=school,dc=edu
+objectClass: organizationalUnit
+objectClass: top
+ou: edu
+
+dn: ou=net,dc=school,dc=edu
+objectClass: organizationalUnit
+objectClass: top
+ou: net
+
+dn: cn=template,ou=net,dc=school,dc=edu
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+cn: template
+sn: {sn}
+
+dn: ou=tech,dc=school,dc=edu
+objectClass: organizationalUnit
+objectClass: top
+ou: tech
+
+dn: ou=class,dc=school,dc=edu
+objectClass: organizationalUnit
+objectClass: top
+ou: class
+

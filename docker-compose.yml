@@ -47,3 +47,18 @@ services:
         image: redis:4.0.9-alpine
         volumes:
             - ".data/redis:/data"
+
+    ldap:
+        build:
+            context: .
+            dockerfile: Dockerfile-ldap
+        environment:
+            LDAP_ORGANISATION: "School"
+            LDAP_DOMAIN: "school.edu"
+            LDAP_ADMIN_PASSWORD: "password"
+            LDAP_TLS: "false"
+        volumes:
+            - ".data/ldap:/var/lib/ldap"
+            - ".data/ldap_etc:/etc/ldap/slapd.d"
+        ports:
+            - "389:389"

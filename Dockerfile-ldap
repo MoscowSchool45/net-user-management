@@ -1,0 +1,4 @@
+# Based on Node 8.x LTS image
+FROM osixia/openldap:1.2.1
+
+ADD ldap_custom_fixtures /container/service/slapd/assets/config/bootstrap/ldif/custom
